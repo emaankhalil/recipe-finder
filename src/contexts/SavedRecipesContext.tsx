@@ -34,7 +34,7 @@ export const SavedRecipesProvider = ({ children }: SavedRecipesProviderProps) =>
       try {
         const parsedRecipes: Recipe[] = JSON.parse(storedRecipes);
         setSavedRecipes(parsedRecipes);
-        setSavedRecipeIds(new Set(parsedRecipes.map(recipe => recipe.id)));
+        setSavedRecipeIds(new Set(parsedRecipes.map((recipe) => recipe.id)));
       } catch (error) {
         console.error('Error loading saved recipes from localStorage:', error);
       }
@@ -48,15 +48,15 @@ export const SavedRecipesProvider = ({ children }: SavedRecipesProviderProps) =>
 
   const saveRecipe = (recipe: Recipe) => {
     if (!savedRecipeIds.has(recipe.id)) {
-      setSavedRecipes(prev => [...prev, recipe]);
-      setSavedRecipeIds(prev => new Set([...prev, recipe.id]));
+      setSavedRecipes((prev) => [...prev, recipe]);
+      setSavedRecipeIds((prev) => new Set([...prev, recipe.id]));
       console.log('Recipe saved:', recipe.name);
     }
   };
 
   const unsaveRecipe = (recipeId: string) => {
-    setSavedRecipes(prev => prev.filter(recipe => recipe.id !== recipeId));
-    setSavedRecipeIds(prev => {
+    setSavedRecipes((prev) => prev.filter((recipe) => recipe.id !== recipeId));
+    setSavedRecipeIds((prev) => {
       const newSet = new Set(prev);
       newSet.delete(recipeId);
       return newSet;
@@ -73,12 +73,12 @@ export const SavedRecipesProvider = ({ children }: SavedRecipesProviderProps) =>
     savedRecipeIds,
     saveRecipe,
     unsaveRecipe,
-    isRecipeSaved,
+    isRecipeSaved
   };
 
   return (
     <SavedRecipesContext.Provider value={value}>
       {children}
-    </SavedRecipesContext.Provider>
-  );
+    </SavedRecipesContext.Provider>);
+
 };

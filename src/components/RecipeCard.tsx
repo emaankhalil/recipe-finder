@@ -19,13 +19,13 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
       unsaveRecipe(recipe.id);
       toast({
         title: "Recipe removed",
-        description: `${recipe.name} has been removed from your saved recipes.`,
+        description: `${recipe.name} has been removed from your saved recipes.`
       });
     } else {
       saveRecipe(recipe);
       toast({
         title: "Recipe saved!",
-        description: `${recipe.name} has been added to your saved recipes.`,
+        description: `${recipe.name} has been added to your saved recipes.`
       });
     }
   };
@@ -36,7 +36,8 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
         <img
           src={recipe.image}
           alt={recipe.name}
-          className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105" />
+          className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
+        />
 
         <div className="absolute top-2 right-2">
           <Badge variant="secondary" className="bg-white/90 text-orange-800">
@@ -51,14 +52,12 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
             size="sm"
             onClick={handleSaveToggle}
             className={`p-2 rounded-full transition-colors ${
-              isSaved 
-                ? 'bg-red-500 hover:bg-red-600 text-white' 
+              isSaved
+                ? 'bg-red-500 hover:bg-red-600 text-white'
                 : 'bg-white/90 hover:bg-white text-gray-600 hover:text-red-500'
             }`}
           >
-            <Heart 
-              className={`h-4 w-4 ${isSaved ? 'fill-current' : ''}`} 
-            />
+            <Heart className={`h-4 w-4 ${isSaved ? 'fill-current' : ''}`} />
           </Button>
         </div>
       </div>
@@ -87,21 +86,21 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           </p>
         </div>
         
-        {recipe.dietaryTags.length > 0 &&
-        <div className="mb-3">
+        {recipe.dietaryTags.length > 0 && (
+          <div className="mb-3">
             <div className="flex flex-wrap gap-1">
-              {recipe.dietaryTags.map((tag) =>
-            <Badge
-              key={tag}
-              variant="secondary"
-              className="text-xs bg-green-100 text-green-800 hover:bg-green-200">
-
+              {recipe.dietaryTags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  className="text-xs bg-green-100 text-green-800 hover:bg-green-200"
+                >
                   {tag}
                 </Badge>
-            )}
+              ))}
             </div>
           </div>
-        }
+        )}
         
         <div className="mt-auto pt-2">
           <Button
@@ -109,14 +108,14 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
             onClick={() => {
               console.log('Viewing recipe:', recipe.name);
               // Future: Navigate to detailed recipe page
-            }}>
-
+            }}
+          >
             View Recipe
           </Button>
         </div>
       </CardContent>
-    </Card>);
-
+    </Card>
+  );
 };
 
 export default RecipeCard;
