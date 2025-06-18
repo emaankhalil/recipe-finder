@@ -8,6 +8,12 @@ interface IngredientSearchProps {
 }
 
 const IngredientSearch = ({ ingredients, onIngredientsChange }: IngredientSearchProps) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    console.log('Ingredient search input changed:', value);
+    onIngredientsChange(value);
+  };
+
   return (
     <div className="space-y-2">
       <Label htmlFor="ingredients" className="text-sm font-medium text-gray-700">
@@ -20,15 +26,15 @@ const IngredientSearch = ({ ingredients, onIngredientsChange }: IngredientSearch
           type="text"
           placeholder="e.g., tomatoes, chicken, rice, garlic..."
           value={ingredients}
-          onChange={(e) => onIngredientsChange(e.target.value)}
-          className="pl-10 py-2 border-orange-200 focus:border-orange-400 focus:ring-orange-400" />
-
+          onChange={handleInputChange}
+          className="pl-10 py-2 border-orange-200 focus:border-orange-400 focus:ring-orange-400"
+        />
       </div>
       <p className="text-xs text-gray-500">
         Enter ingredients separated by commas
       </p>
-    </div>);
-
+    </div>
+  );
 };
 
 export default IngredientSearch;
