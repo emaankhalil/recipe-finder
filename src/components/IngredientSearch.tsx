@@ -27,14 +27,14 @@ const IngredientSearch = ({ ingredients, onIngredientsChange }: IngredientSearch
           placeholder="e.g., tomatoes, chicken, rice, garlic..."
           value={ingredients}
           onChange={handleInputChange}
-          className="pl-10 py-2 border-orange-200 focus:border-orange-400 focus:ring-orange-400"
-        />
+          className="pl-10 py-2 border-orange-200 focus:border-orange-400 focus:ring-orange-400" />
+
       </div>
       <p className="text-xs text-gray-500">
         Enter ingredients separated by commas
       </p>
-    </div>
-  );
+    </div>);
+
 };
 
 export default IngredientSearch;
