@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Clock, ChefHat, Heart } from 'lucide-react';
 import { useSavedRecipes } from '@/contexts/SavedRecipesContext';
 import { useToast } from '@/hooks/use-toast';
+import RecipeDetailModal from '@/components/RecipeDetailModal';
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -32,14 +33,6 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
     }
   };
 
-  const handleViewRecipe = () => {
-    console.log('View recipe button clicked for:', recipe.name);
-    toast({
-      title: "Recipe Details",
-      description: `Viewing ${recipe.name} - Feature coming soon!`
-    });
-  };
-
   return (
     <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300 border-orange-100" data-id="l7huhqncg">
       <div className="relative overflow-hidden" data-id="s60b521lf">
@@ -47,8 +40,8 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           src={recipe.image}
           alt={recipe.name}
           className="w-full h-48 object-cover transition-transform duration-300 hover:scale-105"
-          data-id="2qi61q4i5"
-        />
+          data-id="2qi61q4i5" />
+
 
         <div className="absolute top-2 right-2" data-id="6a90b5hhu">
           <Badge variant="secondary" className="bg-white/90 text-orange-800" data-id="y9luk33li">
@@ -63,12 +56,12 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
             size="sm"
             onClick={handleSaveToggle}
             className={`p-2 rounded-full transition-colors ${
-              isSaved
-                ? 'bg-red-500 hover:bg-red-600 text-white'
-                : 'bg-white/90 hover:bg-white text-gray-600 hover:text-red-500'
-            }`}
-            data-id="be3ip3pe1"
-          >
+            isSaved ?
+            'bg-red-500 hover:bg-red-600 text-white' :
+            'bg-white/90 hover:bg-white text-gray-600 hover:text-red-500'}`
+            }
+            data-id="be3ip3pe1">
+
             <Heart className={`h-4 w-4 ${isSaved ? 'fill-current' : ''}`} data-id="9zb7ud4or" />
           </Button>
         </div>
@@ -98,35 +91,35 @@ const RecipeCard = ({ recipe }: RecipeCardProps) => {
           </p>
         </div>
         
-        {recipe.dietaryTags.length > 0 && (
-          <div className="mb-3" data-id="bxydbnwfk">
+        {recipe.dietaryTags.length > 0 &&
+        <div className="mb-3" data-id="bxydbnwfk">
             <div className="flex flex-wrap gap-1" data-id="vh1avw8pw">
-              {recipe.dietaryTags.map((tag) => (
-                <Badge
-                  key={tag}
-                  variant="secondary"
-                  className="text-xs bg-green-100 text-green-800 hover:bg-green-200"
-                  data-id="n41gnk8ad"
-                >
+              {recipe.dietaryTags.map((tag) =>
+            <Badge
+              key={tag}
+              variant="secondary"
+              className="text-xs bg-green-100 text-green-800 hover:bg-green-200"
+              data-id="n41gnk8ad">
+
                   {tag}
                 </Badge>
-              ))}
+            )}
             </div>
           </div>
-        )}
+        }
         
         <div className="mt-auto pt-2" data-id="d3sngu1t6">
-          <Button
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white"
-            onClick={handleViewRecipe}
-            data-id="39hgx1gkr"
-          >
-            View Recipe
-          </Button>
+          <RecipeDetailModal recipe={recipe}>
+            <Button
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white"
+              data-id="39hgx1gkr">
+              View Recipe
+            </Button>
+          </RecipeDetailModal>
         </div>
       </CardContent>
-    </Card>
-  );
+    </Card>);
+
 };
 
 export default RecipeCard;
