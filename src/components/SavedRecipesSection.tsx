@@ -26,8 +26,8 @@ const SavedRecipesSection = () => {
             </p>
           </div>
         </CardContent>
-      </Card>
-    );
+      </Card>);
+
   }
 
   return (
@@ -40,13 +40,13 @@ const SavedRecipesSection = () => {
       </CardHeader>
       <CardContent>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {savedRecipes.map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
-          ))}
+          {savedRecipes.map((recipe) =>
+          <RecipeCard key={recipe.id} recipe={recipe} />
+          )}
         </div>
       </CardContent>
-    </Card>
-  );
+    </Card>);
+
 };
 
 export default SavedRecipesSection;
